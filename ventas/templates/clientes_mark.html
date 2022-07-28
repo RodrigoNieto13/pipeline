@@ -1,0 +1,17 @@
+<div id="map" style="height: 600px;"></div>
+
+<script type="text/javascript">
+/// Mapas ///
+  var map = L.map('map').setView([20.7008,-99.7009], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+ var marker = null;
+    {% for m in marcador %}
+        marker = new L.marker([{{ m.coordenadas }}]);
+        marker.addTo(map);
+        marker.bindPopup("{{m.nombre_comercial}}");
+    {% endfor %}
+
+</script>

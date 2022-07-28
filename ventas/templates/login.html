@@ -1,0 +1,83 @@
+{% block content %}
+{% load static %}
+<style type="text/css">
+     img{
+        height: 120px;
+        margin: 0;
+        padding: 0px;
+      }
+      #titulo{
+        padding-top: 20px;
+      }
+          color: #fff;
+    .login-container form{
+        padding: 10%;
+    }
+    .btnSubmit
+    {
+        width: 50%;
+        border-radius: 1rem;
+        padding: 1.5%;
+        border: none;
+        cursor: pointer;
+    }
+
+    .login-form-2 .btnSubmit{
+        font-weight: 600;
+        color: #fff;
+        background-color: #0062cc;
+    }
+    .login-form-2 .ForgetPwd{
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    header{
+        margin-bottom: 5%;
+    }
+
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Login | Sistema de Ventas</title>
+    </head>
+    <body>
+    <header align="center">
+     <div class="row">
+        <div class="col-md-2" align="center">
+            <div class="form-group">
+               <img src="{% static 'img/LOGO OFICIAL PIPELINE SIN FONDO.png' %}">
+            </div>
+        </div>
+        <div class="col-md-8" align="center">
+            <div class="form-group" id="titulo">
+                <h2><center> Sistema de Ventas | Mapppit </center></h2>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="contenedor" align="center">
+ <div class="col-md-6 login-form-2" align="center">
+    <h3>Iniciar Sesión</h3>
+        <form method="POST">{%csrf_token%}
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Usuario*" value="" name="username" required />
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Contraseña*" value="" name="password" required />
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btnSubmit" value="Ingresar" />
+            </div>
+        </form>
+    </div>   
+</div>
+
+</body>
+</html>
+{% endblock %}

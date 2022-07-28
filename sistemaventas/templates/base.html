@@ -1,0 +1,200 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% load static %}
+
+
+<html lang="sp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title> Sistema | ventas </title>
+
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"  >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style4.css" class="theme">
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- DATATABLES -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.21/datatables.min.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.21/datatables.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+
+    <!-- HIGHCHARTS-->
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
+
+    <!-- jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.3.0-beta.2/pdfmake.min.js" integrity="sha512-k9XKlDENMt9s19gEl+L6F/r+OWAR4pesbUd8/SKQVMt3b1ECqsRXgLA9XnJoq4J9mjlxLQabfTxf3268lzpFUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Exportar a XLS -->
+    <script type="text/javascript" src="https://unpkg.com/xlsx@latest/dist/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+
+    <!-- Mapas -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet-src.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3><a href="/"><center><img src="{% static  'img/LOGO BLANCO PIPELINE SIN FONDO.png' %}" height="80" width="130"></center></a></h3>
+                <strong><a href="/"><img src="{% static 'img/ISOTIPO PIPELINE-  BLANCO SIN FONDO.png' %}" height="60" width="60"></a></strong>
+            </div>
+            <ul class="list-unstyled components">
+                <li class="active">
+                        <li>
+                            <a style="color:white;" href="/inicio"><i class="fa fa-check-square" aria-hidden="true"></i>Inicio</a>
+                        </li>
+                        <li>
+                            <a style="color:white;" href="/listProspecto"><i class="fa fa-users" aria-hidden="true"></i>Clientes</a>
+                        </li>
+                        <li>
+                            <a style="color:white;" href="/listResponsable"><i class="fa fa-user" aria-hidden="true"></i>Responsables</a>
+                        </li>
+                        <li>
+                            <a style="color:white;" href="/grafico"><i class="fa fa-bar-chart" aria-hidden="true"></i>Pipeline Gráfico(General)</a>
+                        </li>
+                </li>
+                <li>
+                    <a style="color:white;" href="/grafico_mensual"><i class="fa fa-area-chart" aria-hidden="true"></i>Pipeline Gráfico(Mensual)</a>
+                </li>
+                <li>
+                   <a style="color:white;" class="nav-link" href="/accounts/logout/"><i class="fa fa-sign-out" aria-hidden="true"></i>Cerrar Sesión</a>
+                </li>
+            </ul>
+            <center><button type="button" id="sidebarCollapse" class="btn btn-outline-light"><i class="fa fa-bars" aria-hidden="true"></i></button></center>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="col-md-11">
+            <!-- Default switch -->
+            <div class="col-12">
+                <div class="custom-control custom-switch">
+                    <span class="float-right">
+                        <input type="checkbox" class="custom-control-input" id="customSwitches">
+                        <label class="custom-control-label" for="customSwitches">Modo Oscuro</label>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-12"><span class="float-right"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Usuario: {{user.username}}</span></div>
+            <br>
+                <!-- CONTENIDO DE LA PÁGINA -->
+              <main role="main" class="col-md-0 ml-sm-auto col-lg-12 px-md-0">
+                <h1 class="mt-2">{% block titulo %}{% endblock %}</h1>
+                <br>
+                  {% block content %}
+                  {% endblock %}
+              </main>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+     <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        /// navbar ///
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+        /// Dark Mode ///
+        $('#customSwitches').click(function(){
+            if ($('.custom-control-input').is(':checked')) {
+                $("body").addClass("dark");
+                $("#tabla").addClass("dark");
+                $("td").addClass("dark");
+                $("label").addClass("dark");
+                $("footer").addClass("dark");
+                $("#modal-detail").addClass("dark");
+                $(".paginate_button").addClass("dark");
+                /// remuevo la clase "dark" para que se vea mejor el inicio.html ///
+                $(".table-secondary").removeClass("dark");
+                $(".table-warning").removeClass("dark");
+                $(".table-info").removeClass("dark");
+                $(".table-primary").removeClass("dark");
+                $(".table-success").removeClass("dark");
+                $(".table-danger").removeClass("dark");
+                $("#map").removeClass("dark");
+            }
+            else{
+                $("body").removeClass("dark");
+                $("#tabla").removeClass("dark");
+                $("td").removeClass("dark");
+                $("label").removeClass("dark");
+                $(".paginate_button").removeClass("dark");
+                $("#modal-detail").removeClass("dark");
+                $("footer").removeClass("dark");
+            }
+        });
+        checkbox = document.getElementById('customSwitches')
+        checkbox.checked = eval(window.localStorage.getItem(checkbox.id))
+
+        checkbox.addEventListener('change', function(){
+            window.localStorage.setItem(checkbox.id, checkbox.checked)
+        })
+        $( document ).ready(function() {
+            if ($('.custom-control-input').is(':checked')) {
+                $("body").addClass("dark");
+                $("#tabla").addClass("dark");
+                $("td").addClass("dark");
+                $("label").addClass("dark");
+                $("footer").addClass("dark");
+                $(".paginate_button").addClass("dark");
+                $("#modal-detail").addClass("dark");
+                $(".table-secondary").removeClass("dark");
+                $(".table-warning").removeClass("dark");
+                $(".table-info").removeClass("dark");
+                $(".table-primary").removeClass("dark");
+                $(".table-success").removeClass("dark");
+                $(".table-danger").removeClass("dark");
+                $("#map").removeClass("dark");
+            }
+            else{
+                 $("body").removeClass("dark");
+                 $("#tabla").removeClass("dark");
+                 $("td").removeClass("dark");
+                 $("label").removeClass("dark");
+                 $(".paginate_button").removeClass("dark");
+                 $("#modal-detail").removeClass("dark");
+                 $("footer").removeClass("dark");
+            }
+        });
+    </script>
+    <footer>
+        <p>&copy; Mappit 2022 version 1.0</p>
+    </footer>
+</body>
+</html>
+

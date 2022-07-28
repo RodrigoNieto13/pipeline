@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %} Generalidades Pipeline {% endblock %}
+
+{% block content %}
+<div  class="form-row form-row" >
+<div class="form-group col-md-6 mb-3">
+<div class="table-responsive">
+  <table id="tabla_fase" class="table table-striped table-sm">
+    <thead class="thead-dark">
+      <tr>
+      	<th>Fase</th>
+      	<th>Descripción</th>
+      </tr>
+  </thead>
+  <tbody>
+  	<tr>
+  		<td class="table-secondary">F1</td>
+  		<td class="table-secondary">Buscar Nuevas Oportunidades de Negocio</td>
+  	</tr>
+  	<tr>
+  		<td class="table-warning">F2</td>
+  		<td class="table-warning">Identificar Necesidades del Prospecto</td>
+  	</tr>
+  	<tr>
+  		<td class="table-info">F3</td>
+  		<td class="table-info">Formular la Propuesta</td>
+  	</tr>
+  	<tr>
+  		<td class="table-primary">F4</td>
+  		<td class="table-primary">Negociar el Cierre</td>
+  	</tr>
+  	<tr>
+  		<td class="table-success">F5</td>
+  		<td class="table-success">Administrar la Implementación</td>
+  	</tr>
+  	<tr>
+  		<td class="table-danger">F6</td>
+  		<td class="table-danger">Lista Negra</td>
+  	</tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="form-group col-md-6 mb-3">
+<div class="table-responsive">
+  <table id="tabla" class="table table-striped table-sm">
+    <thead class="thead-dark">
+      <tr>
+      	<th>Clasificación</th>
+      	<th>Descripción</th>
+      </tr>
+  </thead>
+  <tbody>
+  	<tr>
+  		<td>A</td>
+  		<td>Prioridad Alta</td>
+  	</tr>
+  	<tr>
+  		<td>B</td>
+  		<td>Muy Importante</td>
+  	</tr>
+  	<tr>
+  		<td>C</td>
+  		<td>Importante</td>
+  	</tr>
+  	<tr>
+  		<td>D</td>
+  		<td>Regular</td>
+  	</tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+{% endblock %}

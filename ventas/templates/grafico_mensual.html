@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block titulo%} Gráfico Pipeline (Mensual) {% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+            	<label for="fecha"> Mes: </label>
+                <select class="form-control" id="fecha">
+                	<option value="" selected="selected">Seleccione un mes...</option>
+      				    <option value="1">Enero</option>
+      				    <option value="2">Febrero</option>
+      				    <option value="3">Marzo</option>
+      				    <option value="4">Abril</option>
+      				    <option value="5">Mayo</option>
+      				    <option value="6">Junio</option>
+      				    <option value="7">Julio</option>
+      				    <option value="8">Agosto</option>
+      				    <option value="9">Septiembre</option>
+      				    <option value="10">Octubre</option>
+      				    <option value="11">Noviembre</option>
+      				    <option value="12">Diciembre</option>
+    			     </select>
+            </div>
+        </div>
+    </div>
+  <button type="submit" class="btn btn-primary" id="btn" onclick="datos()">Enviar</button>
+
+  <br><br>
+  <div id="error" style="display: none;"><center><h3 style="color: red;">Selecciona un mes!</h3></center></div>
+  <div id="contenido"></div>
+
+<script type="text/javascript">
+   function datos(){
+    if ($('#fecha').val().trim() === '') {
+        $('#error').show();
+
+    } else {
+      $('#error').hide();
+      var fecha = $('#fecha').val();
+      var url = '/grafico_m/' + fecha;
+      $("#contenido").load(url, function() {
+            if ($('.custom-control-input').is(':checked')) {
+                $("body").addClass("dark");
+                $("#tabla").addClass("dark");
+                $("td").addClass("dark");
+                $("label").addClass("dark");
+                $(".dataTables_info").addClass("dark");
+                $(".table-secondary").removeClass("dark");
+                $(".table-warning").removeClass("dark");
+                $(".table-info").removeClass("dark");
+                $(".table-primary").removeClass("dark");
+                $(".table-success").removeClass("dark");
+                $(".table-danger").removeClass("dark");
+            }
+            else{
+                 $("body").removeClass("dark");
+                 $("#tabla").removeClass("dark");
+                 $("td").removeClass("dark");
+                 $("label").removeClass("dark");
+                 $(".dataTables_info").removeClass("dark");
+            }
+        });
+    
+  }
+}
+</script>
+{% endblock %}

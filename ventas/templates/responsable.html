@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+{{ form.media }}
+
+{% block titulo %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+  <h2 class="h2">Responsables</h2>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <a href="/listResponsable" class="btn btn-sm btn-secondary"><i class="fa fa-list-alt" aria-hidden="true"></i> Lista de Responsables</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<center>
+<h3 style="margin-bottom: 1.5%; color: red;">Introduce los siguientes datos</h3>
+<form method="post">
+  {% csrf_token %}
+  {% crispy form %}
+</form>
+</center>
+{% endblock %}

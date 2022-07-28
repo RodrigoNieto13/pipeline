@@ -1,0 +1,78 @@
+{% load crispy_forms_tags %}
+{{ form.media }}
+{% load static %}
+
+{% block titulo %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+  <h2 class="h2">Editar Cliente: {{ object.razon_social }}</h2>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <a href="/listProspecto" class="btn btn-sm btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<center>
+<h3 style="margin-bottom: 1.5%; color: red;">Introduce los siguientes datos</h3>
+<form action="{% url 'updateProspecto' object.id %}" method="POST">
+  {% csrf_token %}
+  {% crispy form %}
+</form>
+</center>
+
+<div id="map" style="height: 600px;"></div>
+
+<script type="text/javascript">
+            var map = L.map('map').setView([20.38973, -99.996338], 10);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 19,
+              attribution: '© OpenStreetMap'
+            }).addTo(map);
+
+              var geocoder = L.Control.geocoder({
+                defaultMarkGeocode: false
+              })
+              .on('markgeocode', function(e) {
+              var bbox = e.geocode.bbox;
+              var poly = L.polygon([
+                bbox.getSouthEast(),
+                bbox.getNorthEast(),
+                bbox.getNorthWest(),
+                bbox.getSouthWest()
+              ]).addTo(map);
+              map.fitBounds(poly.getBounds());
+            }).addTo(map);
+
+            var marker = L.marker([0,0], {draggable: true});
+            
+              var nom = $("#id_nombre_comercial").val();
+              var coor = $("#id_coordenadas").val();
+              arr = coor.split(',');
+              y = arr[0];
+              x = arr[1];
+              var marker = new L.marker([y, x]);
+              marker.addTo(map);
+              marker.bindPopup(nom).openPopup();
+
+              function onMapClick(e) {
+                marker.setLatLng(e.latlng).addTo(map);
+                marker.bindPopup("" + e.latlng).openPopup();
+                coor = e.latlng.toString();
+                arr = coor.split(')');
+                a = arr[0].toString();
+                c = a.substr(7,30);
+                document.getElementById("id_coordenadas").value = c;
+              }
+              map.on('click', onMapClick);
+
+          $( document ).ready(function() {
+            $("#map").removeClass("dark");
+        });
+        </script>
+
+{% endblock %}
+
+
+        

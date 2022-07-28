@@ -1,0 +1,330 @@
+<div class="row">
+<div class="col-12" id="container"></div>
+</div>
+<script>
+  Highcharts.chart('container', {
+      chart: {
+          type: 'column'
+      },
+      title: {
+          text: 'Gráfico Pipeline (Mensual)'
+      },
+      xAxis: {
+      	title: {
+            text: 'Clientes por Fase'
+        }
+      },
+      yAxis: {
+      	title: {
+            text: 'No. de Clientes'
+        }
+      },
+      plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+      series: [{
+          name: 'Fase 1',
+          data: [{{ fase_uno_series }}],
+          color: 'green'
+      }, {
+          name: 'Fase 2',
+          data: [{{ fase_dos_series }}],
+          color: 'red'
+      },{
+      	name: 'Fase 3',
+      	data: [{{ fase_tres_series }}],
+      	color: 'blue'
+      },{
+      	name: 'Fase 4',
+      	data: [{{ fase_cuatro_series }}],
+      	color: 'orange'
+      },{
+      	name: 'Fase 5',
+      	data: [{{ fase_cinco_series }}],
+      	color:'gray'
+      }]
+  });
+</script>
+
+<br>
+<button class="btn btn-danger" onclick="exportPDF()"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF</button>
+<button class="btn btn-success" onclick="exportXLS()"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</button>
+<br><br>
+
+<div id = "exportar">
+<h2>Resumen Pipeline General con Clientes agrupados por Fase</h2>
+<br><br>
+
+<div class="form-row form-row" >
+<div class="form-group col-md-6"> 
+<h2>Clientes en Fase 1</h2>
+<div class="table-responsive">
+  <table id="tabla_fase" class="table table-striped table-sm">
+    <thead bgcolor="#F79843" style="color:white;">
+      <tr>
+        <th>Razón Social</th>
+        <th>Responsable</th>
+        <th>Observaciones</th>
+      </tr>
+</thead>
+<tbody>
+        <tr>
+        {% for cl in cl_uno %}
+        <td>{{ cl.razon_social }}</td>
+        <td>{{ cl.responsable }}</td>
+        <td>{{ cl.observaciones }}</td>
+      </tr>
+        {% empty %}
+      <tr>
+        <td colspan="5">No se encontraron registros</td>
+      </tr>
+        {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="form-group col-md-6">
+<h2>Clientes en Fase 2</h2>
+<div class="table-responsive">
+  <table id="tabla_fase" class="table table-striped table-sm">
+    <thead bgcolor="#FA5B00" style="color:white;">
+      <tr>
+        <th>Razón Social</th>
+        <th>Responsable</th>
+        <th>Observaciones</th>
+      </tr>
+</thead>
+<tbody>
+        <tr>
+        {% for cl in cl_dos %}
+        <td>{{ cl.razon_social }}</td>
+        <td>{{ cl.responsable }}</td>
+        <td>{{ cl.observaciones }}</td>
+      </tr>
+        {% empty %}
+      <tr>
+        <td colspan="5">No se encontraron registros</td>
+      </tr>
+        {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="form-row form-row" >
+<div class="form-group col-md-6">
+<h2>Clientes en Fase 3</h2>
+<div class="table-responsive">
+  <table id="tabla_fase" class="table table-striped table-sm">
+   <thead bgcolor="#12C2FE" style="color:white;">
+      <tr>
+        <th>Razón Social</th>
+        <th>Responsable</th>
+        <th>Observaciones</th>
+      </tr>
+</thead>
+<tbody>
+        <tr>
+        {% for cl in cl_tres %}
+        <td>{{ cl.razon_social }}</td>
+        <td>{{ cl.responsable }}</td>
+        <td>{{ cl.observaciones }}</td>
+      </tr>
+        {% empty %}
+      <tr>
+        <td colspan="5">No se encontraron registros</td>
+      </tr>
+        {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div class="form-group col-md-6"> 
+<h2>Clientes en Fase 4</h2>
+<div class="table-responsive">
+  <table id="tabla_fase" class="table table-striped table-sm">
+    <thead bgcolor="#0094FA" style="color:white;">
+      <tr>
+        <th>Razón Social</th>
+        <th>Responsable</th>
+        <th>Observaciones</th>
+      </tr>
+</thead>
+<tbody>
+        <tr>
+        {% for cl in cl_cuatro %}
+        <td>{{ cl.razon_social }}</td>
+        <td>{{ cl.responsable }}</td>
+        <td>{{ cl.observaciones }}</td>
+      </tr>
+        {% empty %}
+      <tr>
+        <td colspan="5">No se encontraron registros</td>
+      </tr>
+        {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div class="form-row form-row" >
+<div class="form-group col-md-6">
+<h2>Clientes en Fase 5</h2>
+<div class="table-responsive">
+  <table id="tabla_fase" class="table table-striped table-sm">
+     <thead bgcolor="#07AC19" style="color:white;">
+      <tr>
+        <th>Razón Social</th>
+        <th>Responsable</th>
+        <th>Observaciones</th>
+      </tr>
+</thead>
+<tbody>
+        <tr>
+        {% for cl in cl_cinco %}
+        <td>{{ cl.razon_social }}</td>
+        <td>{{ cl.responsable }}</td>
+        <td>{{ cl.observaciones }}</td>
+      </tr>
+        {% empty %}
+      <tr>
+        <td colspan="5">No se encontraron registros</td>
+      </tr>
+        {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="form-group col-md-6">
+<h2>Clientes en Fase 6</h2>
+<div class="table-responsive">
+  <table id="tabla_fase" class="table table-striped table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th>Razón Social</th>
+        <th>Responsable</th>
+        <th>Observaciones</th>
+      </tr>
+</thead>
+<tbody>
+        <tr>
+        {% for cl in cl_seis %}
+        <td>{{ cl.razon_social }}</td>
+        <td>{{ cl.responsable }}</td>
+        <td>{{ cl.observaciones }}</td>
+      </tr>
+        {% empty %}
+      <tr>
+        <td colspan="5">No se encontraron registros</td>
+      </tr>
+        {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<div style="display: none;">
+<table id="tabla">
+    <thead>
+      <tr>
+        <th>Razón Social</th>
+        <th>Fase</th>
+        <th>Responsable</th>
+        <th>Observaciones</th>
+      </tr>
+</thead>
+<tbody>
+        <tr>
+        {% for cl_uno in cl_uno %}
+        <td>{{ cl_uno.razon_social }}</td>
+        <td>{{ cl_uno.fase }}</td>
+        <td>{{ cl_uno.responsable }}</td>
+        <td>{{ cl_uno.observaciones }}</td>
+      </tr>
+        {% endfor %}
+      <tr>
+        {% for cl_dos in cl_dos %}
+        <td>{{ cl_dos.razon_social }}</td>
+        <td>{{ cl_dos.fase }}</td>
+        <td>{{ cl_dos.responsable }}</td>
+        <td>{{ cl_dos.observaciones }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        {% for cl_tres in cl_tres %}
+        <td>{{ cl_tres.razon_social }}</td>
+        <td>{{ cl_tres.fase }}</td>
+        <td>{{ cl_tres.responsable }}</td>
+        <td>{{ cl_tres.observaciones }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        {% for cl_cuatro in cl_cuatro %}
+        <td>{{ cl_cuatro.razon_social }}</td>
+        <td>{{ cl_cuatro.fase }}</td>
+        <td>{{ cl_cuatro.responsable }}</td>
+        <td>{{ cl_cuatro.observaciones }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        {% for cl_cinco in cl_cinco %}
+        <td>{{ cl_cinco.razon_social }}</td>
+        <td>{{ cl_cinco.fase }}</td>
+        <td>{{ cl_cinco.responsable }}</td>
+        <td>{{ cl_cinco.observaciones }}</td>
+      </tr>
+      {% endfor %}>
+      <tr>
+        {% for cl_seis in cl_seis %}
+        <td>{{ cl_seis.razon_social }}</td>
+        <td>{{ cl_seis.fase }}</td>
+        <td>{{ cl_seis.responsable }}</td>
+        <td>{{ cl_seis.observaciones }}</td>
+      </tr>
+      {% endfor %}
+</tbody>
+</table>
+</div>
+
+<!-- EXPORTACIONES -->
+<script type="text/javascript">
+  function exportPDF(){
+        html2canvas($('#exportar')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Pipeline Mensual.pdf");
+                }
+            });
+    }
+
+  function exportXLS() {
+     $tabla = document.querySelector("#tabla");
+    let tableExport = new TableExport($tabla, {
+        exportButtons: false, // No queremos botones
+        filename: "Pipeline Mensual", //Nombre del archivo de Excel
+        sheetname: "Clientes", //Título de la hoja
+    });
+    let datos = tableExport.getExportData();
+    let preferenciasDocumento = datos.tabla.xlsx;
+    tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+}
+</script>

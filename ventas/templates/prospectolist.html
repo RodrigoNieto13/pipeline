@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-1 mb-2">
+  <h2 class="h2">Clientes</h2>
+  <div class="btn-toolbar mb-1 mb-md-0">
+    <div class="btn-group mr-1">
+      <a href="/crearProspecto" class="btn btn-sm btn-secondary">Agregar Clientes <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div id="update">
+<div class="table-responsive">
+  <table id="tabla" class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Razón Social</th>
+        <th>Contacto</th>
+        <th>Teléfono</th>
+        <th>Email</th>
+        <th>Clasificacion</th>
+        <th>Fase</th>
+        <th>Localidad</th>
+        <th>Coordenadas</th>
+        <th>Fecha de Registro</th>
+        <th>Nombre Comercial</th>
+        <th>Responsable</th>
+        <th>Giro</th>
+        <th>Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for prosp in object_list %}
+        <td><button onclick="Update('{{ prosp.get_absolute_url }}')" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i> {{ prosp.razon_social }} </button></td>
+        <td>{{ prosp.contacto }}</td>
+        <td>{{ prosp.num_tel }}</td>
+        <td>{{ prosp.correo }}</td>
+        <td>{{ prosp.clasificacion }}</td>
+        <td>{{ prosp.fase }}</td>
+        <td>{{ prosp.localidad }}</td>
+        <td><button onclick="abrir_modal_detalle('{{ prosp.get_url }}')" class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> {{ prosp.coordenadas }} </button></td>
+        <td>{{ prosp.fechaReg }}</td>
+        <td>{{ prosp.nombre_comercial }}</td>
+        <td>{{ prosp.responsable }}</td>
+        <td>{{ prosp.giro }}</td>
+        <td>{{ prosp.observaciones }}</td>
+      </tr>
+        {% empty %}
+      <tr>
+        <td colspan="5">No se encontraron registros</td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+<br>
+
+  <div id="contenido">
+  <button type="submit" class="btn btn-success btn-lg btn-block" id="btn" onclick="Mapa()">Ver Mapa</button>
+  </div>
+</div>
+
+<div class="modal fade" id="modal" role="dialog"></div>
+
+<script type="text/javascript">
+  function Update(url) {
+    $("#update").load(url);
+  }
+  function Mapa(){
+    var url = '/marcadores';
+    $("#contenido").load(url);
+  }
+
+  $( document ).ready(function() {
+    $("#map").removeClass("dark");
+  });
+
+   /// Modales ///
+function abrir_modal_detalle(url){
+  $('#modal').load(url, function(){
+    $(this).modal('show'); 
+  })
+}
+
+/// DataTables ///
+var table = $('#tabla').DataTable({
+  "info": false,
+  "paging": true,
+  "language": {
+    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+  },
+ dom: 'Bfrtip',
+    buttons: [{
+        //Botón para Excel
+        extend: 'excel',
+        title: 'Prospectos',
+        filename: 'Sistema_Ventas_Prospectos',
+
+        //Aquí es donde generas el botón personalizado
+        text: '<button class="btn btn-success btn-sm"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</button>'
+      }]
+});
+</script>
+{% endblock %}
